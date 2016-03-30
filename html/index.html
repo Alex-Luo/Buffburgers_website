@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+		<!--Jquery-->	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+		<!-- Bootstrap -->	
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		
+		<!--Sweet Alert-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+
+</head>
+	
+<body>	
+<script>
+	function alert(){
+					var order = {
+					firstName: document.getElementById('first_name').value,
+					lastName: document.getElementById('last_name').value,
+					cuID: document.getElementById('ID').value,
+					burger: document.getElementById('burger').value,
+					temperature: document.getElementById('temp').value
+					}
+					//calls USD Bitcoin value from backend.
+					$.ajax({
+					url:'/place',
+					type:'POST',
+					data: order,
+					dataTpye: 'JSON',
+					success: function(){
+									console.log("ajax works");
+					},
+					error: function(){
+								console.log("ajax failed");
+					} 
+				}); swal("Success!", "Your order was placed", "success")
+	}
+</script>
+		<!-- Form Collum -->
+		<div class="container">
+			<form class="form-horizontal" role="form" action="#">
+			<div class="col-md-4 col-md-offset-4">
+					<h1>BuffBurgers</h1>
+					
+					<!-- Start of Form -->
+					<div class="form-group">
+						<label for="Order">Farand Burger Order</label>
+						<input type="text" class="form-control" id="ID" placeholder="Enter Your Last 5 Digits of our CU ID">
+					</div>					
+			</div>
+			<div class="col-md-4 col-md-offset-4">
+				<div class="form-group">
+					<input type="text" class="form-control" id="first_name" placeholder="Enter Your First Name">
+				</div>
+			</div>
+			<div class="col-md-4 col-md-offset-4">
+				<div class="form-group">
+					<input type="text" class="form-control" id="last_name" placeholder="Enter Your Last Name">
+				</div>
+			</div>
+			</form>
+			<div class="col-md-3 col-md-offset-4">
+				<div class = "form-group">
+				<label for="burger_type">Type Of Burger?</label>
+ 				 <select class="form-control" id="burger">
+    				<option>Hamburger</option>
+   					<option>Veggie Burger</option>
+    				<option>Daily Special</option>
+ 				 </select>
+ 				</div>
+			</div>
+			<div class="col-md-3 col-md-offset-4">
+				<div class = "form-group">
+				<label for="temperature">How Would You Like Your Burger Cooked?</label>
+ 				 <select class="form-control" id="temp">
+    				<option>155&deg</option>
+   					<option>160&deg</option>
+    				<option>165&deg</option>
+   					<option>170&deg</option>
+   					<option>175&deg</option>
+ 				 </select>
+ 				</div>
+			</div>
+			<div class="col-md-6 col-md-offset-4 form-group">
+				<label for="cheese">Cheese?</label>
+				<div class="checkbox-inline">
+					<input type = "checkbox" value="">Chedder
+				</div>
+				<div class="checkbox-inline">
+					<input type="checkbox" value="">Provolone
+				</div>
+				<div class="checkbox-inline">
+					<input type="checkbox" value="">Swiss
+				</div>
+				<div class="checkbox-inline">
+					<input type="checkbox" value="">Pepper Jack
+				</div>
+			</div>
+			<div class="col-md-6 col-md-offset-4 form-group">
+				<label for="toppings">Toppings?</label>
+				<div class="checkbox-inline">
+					<input type="checkbox" value="">Lettuce
+				</div>
+				<div class="checkbox-inline">
+					<input type="checkbox" value="">Tomato
+				</div>
+				<div class="checkbox-inline">
+					<input type="checkbox" value="">Onion
+				</div>
+				<div class="checkbox-inline">
+					<input type="checkbox" value="">Pickles
+				</div>
+			</div>
+			<div class="col-md-3 col-md-offset-4 form-group">
+				<div class = "form-group">
+				<label for="bun_type">Type of Bun?</label>
+ 				 <select class="form-control" id="bun">
+    				<option>Regular Bun</option>
+   					<option>Lettuce Wrap</option>
+    				<option>Gluten Free Bun</option>
+ 				 </select>
+ 				</div>
+			</div>
+			<div class = "col-md-6 col-md-offset-4">
+				<button type="submit" class="btn btn-default" onclick="alert();">Submit</button>
+			</div>
+		</div>
+			
+			
+</body>
+</html>
