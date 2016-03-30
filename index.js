@@ -14,15 +14,11 @@ app.post('/place', function(req, res){
 				console.log("Connected");		
 				var collection = db.collection('orders');
 				var data = req.body;
-				console.log(data);
 				collection.insert(data);
+				db.close;
 		});
 });
-/*
-MongoClient.connect(url, function(err, db) {
-		assert.equal(null, err);
-		console.log("Connected correctly to server.");
-});*/
+
 app.get('/', function (req, res){
 	fs.readFile('html/index.html', function(err, text){
 		res.setHeader('Context-Type', 'text/html');
