@@ -21,14 +21,21 @@
 	
 <body>	
 <script>
-    
+
 	function alert(){
+                    var cheeses = $('#cheese input:radio:checked').val();
+                    var lettuce = $('#lettuce input:checkbox:checked').val();
+                    var tomato = $('#tomato input:checkbox:checked').val();
+                    var onion = $('#onion input:checkbox:checked').val();
+                    var pickle = $('#pickles input:checkbox:checked').val();
 					var order = {
 					firstName: document.getElementById('first_name').value,
 					lastName: document.getElementById('last_name').value,
 					cuID: document.getElementById('ID').value,
 					burger: document.getElementById('burger').value,
-					temperature: document.getElementById('temp').value
+                    temperature: document.getElementById('temp').value,
+                    cheese: cheeses,
+                    topping: [lettuce, tomato, onion, pickle]
 					}
 					//calls USD Bitcoin value from backend.
 					$.ajax({
@@ -54,21 +61,10 @@
 		if(document.getElementById('burger').value == "") failed = true;
 		if(document.getElementById('temp').value == "") failed = true;
 		if(failed) console.log("Expected a fully filled form");
+        if(failed) swal("Please fill out form completley", "error");
+        if(!failed) alert();
 	}
 
-	//Function tests if the customer selected too many cheeses
-	function testMultipleCheese(){
-		var checkedValue = null; 
-		var inputElements = document.getElementsByClassName('cheese');
-		var numberOfCheese = 0;
-		for(var i=0; inputElements[i]; ++i){
-      if(inputElements[i].checked){
-          checkedValue = inputElements[i].value;
-          numberOfCheese += 1;
-      }
-		}
-		if(numberOfCheese > 1) console.log("Expected only one cheese");
-	}
 </script>
 
 <img src="img/BuffBurgers.png" alt="BuffBurgers logo">
@@ -113,36 +109,44 @@
    					<option>175&deg;</option>
  				 </select>
  				</div>
-				<div class="form-group">
-					<label for="cheese">Cheese?</label>
-					<div class="checkbox-inline">
-						<input class="cheese" type = "checkbox" value="cheddar" id="cheddar">Chedder
-					</div>
-					<div class="checkbox-inline">
-						<input class="cheese" type="checkbox" value="provolone">Provolone
-					</div>
-					<div class="checkbox-inline">
-						<input class="cheese" type="checkbox" value="swiss">Swiss
-					</div>
-					<div class="checkbox-inline">
-						<input class="cheese" type="checkbox" value="pepper jack">Pepper Jack
-					</div>
-				</div>
-				<div class="form-group">
+                <div class="btn-group" id="cheese" data-toggle="buttons">
+                    <label class="btn btn-default blue">
+                        <input type="radio" class="toggle" value="Ched"> Chedder
+                            </label>
+                    <label class="btn btn-default blue">
+                        <input type="radio" class="toggle" value="Prov"> Provolone
+                            </label>
+                    <label class="btn btn-default blue">
+                        <input type="radio" class="toggle" value="Swiss"> Swiss
+                            </label>
+                    <label class="btn btn-default blue">
+                        <input type="radio" class="toggle" value="Pep"> Pepper Jack
+                            </label>
+                </div>
+				<div class="form-group" id="lettuce" data-toggle="buttons">
 					<label for="toppings">Toppings?</label>
 					<div class="checkbox-inline">
-						<input type="checkbox" value="">Lettuce
+						<input type="checkbox" class="toggle" value="Let">Lettuce
 					</div>
+                    </div>
+                
+                    <div class="form-group" id="tomato" data-toggle="buttons">
 					<div class="checkbox-inline">
-						<input type="checkbox" value="">Tomato
+						<input type="checkbox" class="toggle" value="To">Tomato
 					</div>
+                    </div>
+                    
+                    <div class="form-group" id="onion" data-toggle="buttons">
 					<div class="checkbox-inline">
-						<input type="checkbox" value="">Onion
+						<input type="checkbox" class="toggle" value="On">Onion
 					</div>
+                    </div>
+                    
+                    <div class="form-group" id="pickles" data-toggle="buttons">
 					<div class="checkbox-inline">
-						<input type="checkbox" value="">Pickles
+						<input type="checkbox" class="toggle" value="Pi">Pickles
 					</div>
-				</div>
+                    </div>
 				<div class = "form-group">
 				<label for="bun_type">Type of Bun?</label>
  				 <select class="form-control" id="bun">
@@ -151,7 +155,7 @@
     				<option>Gluten Free Bun</option>
  				 </select>
  				</div>
-				<button type="submit" class="btn btn-default" onclick="alert(); testFilledForm(); testMultipleCheese();">Submit</button>
+				<button type="submit" class="btn btn-default" onclick="testFilledForm();">Submit</button>
 			</div>
 		</div>
 			
