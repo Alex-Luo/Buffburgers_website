@@ -6,7 +6,7 @@ var assert = require('assert');
 var bodyParser = require('body-parser');
 app.use(bodyParser());
 
-var url = 'mongodb://heroku_5cxscm2v:5q8p0qi908l50i9fubf5qlg7up@ds011890.mlab.com:11890/heroku_5cxscm2v';
+var url = 'mongodb://heroku_swnsvj81:cdd371vcopbsed5o0uf8d6e8l0@ds013951.mlab.com:13951/heroku_swnsvj81';
 
 app.post('/place', function(req, res){
 		MongoClient.connect(url, function(err, db){
