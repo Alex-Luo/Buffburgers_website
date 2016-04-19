@@ -23,7 +23,7 @@
 <script>
 
 	function alert(){
-                    var cheeses = $('#cheese input:radio:checked').val();
+                    var cheeses = $('#cheese label.active input').val();
                     var lettuce = $('#lettuce input:checkbox:checked').val();
                     var tomato = $('#tomato input:checkbox:checked').val();
                     var onion = $('#onion input:checkbox:checked').val();
@@ -35,7 +35,8 @@
 					burger: document.getElementById('burger').value,
                     temperature: document.getElementById('temp').value,
                     cheese: cheeses,
-                    topping: [lettuce, tomato, onion, pickle]
+                    burgerBun: document.getElementById('bun').value,
+                    topping: [lettuce, tomato, onion, pickle],
 					}
 					//calls USD Bitcoin value from backend.
 					$.ajax({
