@@ -4,7 +4,10 @@ var fs = require('fs');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var bodyParser = require('body-parser');
+var path = require('path');
 app.use(bodyParser());
+
+app.use(express.static(__dirname + '/public'));
 
 var url = 'mongodb://heroku_swnsvj81:cdd371vcopbsed5o0uf8d6e8l0@ds013951.mlab.com:13951/heroku_swnsvj81';
 
